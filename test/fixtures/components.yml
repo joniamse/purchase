@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model: MyString
+  type: 
+  serial_number: MyString
+  rgb: false
+
+two:
+  model: MyString
+  type: 
+  serial_number: MyString
+  rgb: false

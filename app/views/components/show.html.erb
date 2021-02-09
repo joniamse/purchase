@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @component.model %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @component.category %>
+</p>
+
+<p>
+  <strong>Serial number:</strong>
+  <%= @component.serial_number %>
+</p>
+
+<p>
+  <strong>Rgb:</strong>
+  <%= @component.rgb %>
+</p>
+
+<%= link_to 'Edit', edit_component_path(@component) %> |
+<%= link_to 'Back', components_path %>

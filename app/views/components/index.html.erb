@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Components</h1>
+
+<form action="/components" method="GET">
+  <input type="text" name="model" placeholder="Model" value="<%= @model %>" default =""/>
+  <input type="submit", value="Filter" />
+</form>
+
+<form action="/components" method="GET">
+  <select name="brand_id">
+    <option disabled selected value> Select a brand </option>
+    <% Brand.all.each_with_index do | b, index | %>
+      <option value="<%= b.id %>" <%= b.id.to_s == @brand_id ? "selected" : "" %>><%= b.name %> - <%= b.country %></option>
+    <% end -%>
+  </select>
+  <input type="submit", value="Filter" />
+</form>
+
+<form action="/components" method="GET">
+
+<!--ESTO ES BUSQUEDA BLANDA<-->
+Serial number: <input type="serial_number" name="serial_number" placeholder="serial_number" value="<%= @serial_number %>"/>
+
+<input type="submit", value="Filter" />
+</form>
+
+<!--ESTO ES BUSQUEDA CHECK BOX<-->
+<form action="/components" method="GET">
+
+  RGB: <input type="checkbox" name="rgb" value="true" />
+
+  <input type="submit", value="Filter" />
+
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Type</th>
+      <th>Serial number</th>
+      <th>Rgb</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @components.each do |component| %>
+    <% if component.rgb == true %>
+      <tr style="background-color: #40FF00">
+    <% else %>
+      <tr>
+    <% end %>
+        <td><%= component.brand.name %></td>
+        <td><%= component.model %></td>
+        <td><%= component.category %></td>
+        <td><%= component.serial_number %></td>
+        <td><%= component.rgb %></td>
+        <td><%= link_to 'Show', component %></td>
+        <td><%= link_to 'Edit', edit_component_path(component) %></td>
+        <td><%= link_to 'Destroy', component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Component', new_component_path %>

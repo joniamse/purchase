@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User name:</strong>
+  <%= @cart.user_name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cart.user_id %>
+</p>
+
+<p>
+  <strong>Bill date:</strong>
+  <%= @cart.bill_date %>
+</p>
+
+<h1>Item Carts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>+Adds</th>
+      <th>Quantity</th>
+      <th>Unit price</th>
+      <th>Category</th>
+      <th>Brand name</th>
+      <th>Model</th>
+      <th>Total price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% ItemCart.all.each do |item_cart| %>
+    <% if item_cart.cart == @cart %>
+        <% if item_cart.component.rgb == true %>
+          <tr style="background-color: #40FF00">
+            <td> + 25% </td>
+        <% else %>
+          <tr>
+            <td></td>
+        <% end %>
+            <td><%= item_cart.quantity %></td>
+            <td><%= item_cart.unit_price %></td>
+            <td><%= item_cart.component.category %></td>
+            <td><%= item_cart.component.brand.name %></td>
+            <td><%= item_cart.component.model %></td>
+            <td><%= item_cart.pricetotal %></td>
+            <td><%= link_to 'Show', item_cart %></td>
+            <td><%= link_to 'Edit', edit_item_cart_path(item_cart) %></td>
+            <td><%= link_to 'Destroy', item_cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>

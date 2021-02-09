@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Brands</h1>
+
+<form action="/brands" method="GET">
+
+<!--ESTO ES BUSQUEDA BLANDA<-->
+Name: <input type="name" name="name" placeholder="name" value="<%= @name %>"/>  
+
+Country: <input type="country" name="country" placeholder="country" value="<%= @country %>"/>  
+
+<input type="submit", value="Filter" />
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @brands.each do |brand| %>
+      <tr>
+        <td><%= brand.name %></td>
+        <td><%= brand.country %></td>
+        <td><%= link_to 'Show', brand %></td>
+        <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
+        <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Brand', new_brand_path %>
